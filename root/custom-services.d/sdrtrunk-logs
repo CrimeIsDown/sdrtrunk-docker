@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+tail -f /config/SDRTrunk/logs/sdrtrunk_app.log > /proc/1/fd/1
+# To prevent infinite loop, sleep in between
+sleep 1

@@ -1,0 +1,25 @@
+services:
+  sdrtrunk:
+    build: .
+    container_name: sdrtrunk
+    restart: always
+    ports:
+      - "${CUSTOM_PORT:-3000}:${CUSTOM_PORT:-3000}"
+      - "${CUSTOM_HTTPS_PORT:-3001}:${CUSTOM_HTTPS_PORT:-3001}"
+    environment:
+      # Use the same user and group id as the host user
+      - PUID=1000
+      - PGID=1000
+      - CUSTOM_PORT
+      - CUSTOM_HTTPS_PORT
+    devices:
+      # Mount the host's USB devices
+      - /dev/bus/usb:/dev/bus/usb
+    volumes:
+      # Mount the host's shared memory for SDRPlay
+      - /dev/shm:/dev/shm
+      # Needed for udev to work properly
+      - /run/udev/data:/run/udev/data
+      # Mount the host's SDRTrunk configuration and Java configuration
+      - ~/SDRTrunk:/config/SDRTrunk
+      - ~/.java:/config/.java
