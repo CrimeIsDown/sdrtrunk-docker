@@ -16,6 +16,8 @@ services:
       # Mount the host's USB devices
       - /dev/bus/usb:/dev/bus/usb
     volumes:
+      # Persist Webtop's complete home/config directory, including application preferences
+      - ${WEBTOP_CONFIG_DIR:-./appdata}:/config
       # Mount the host's shared memory for SDRPlay
       - /dev/shm:/dev/shm
       # Needed for udev to work properly
