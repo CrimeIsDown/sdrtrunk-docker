@@ -29,6 +29,11 @@ To get started with running SDRTrunk in Docker, follow these steps:
 
 3. Access SDRTrunk by navigating to `http://localhost:3000` in your web browser.
 
+The Compose configuration persists Webtop's complete `/config` directory in
+`./appdata` by default. This retains application preferences that are stored
+outside SDRTrunk's own configuration directory. Set `WEBTOP_CONFIG_DIR` to use
+a different host location.
+
 ### Raspberry Pi 5
 
 The image supports 64-bit Raspberry Pi OS. Docker Compose v2 passes the target
