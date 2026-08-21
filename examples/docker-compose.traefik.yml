@@ -1,0 +1,16 @@
+services:
+  sdrtrunk:
+    networks:
+      - traefik
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.sdrtrunk.rule: "Host(`${SDRTRUNK_HOST}`)"
+      traefik.http.routers.sdrtrunk.entrypoints: websecure
+      traefik.http.routers.sdrtrunk.tls: "true"
+      traefik.http.routers.sdrtrunk.service: sdrtrunk
+      # Webtop's HTTP endpoint is the appropriate upstream when Traefik terminates TLS.
+      traefik.http.services.sdrtrunk.loadbalancer.server.port: "3000"
+
+networks:
+  traefik:
+    external: true

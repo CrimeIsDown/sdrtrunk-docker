@@ -29,6 +29,27 @@ To get started with running SDRTrunk in Docker, follow these steps:
 
 3. Access SDRTrunk by navigating to `http://localhost:3000` in your web browser.
 
+### Traefik reverse proxy
+
+When Traefik terminates TLS, use Webtop's HTTP endpoint (port `3000`) as the
+upstream. The [`examples/docker-compose.traefik.yml`](examples/docker-compose.traefik.yml)
+override configures the router, WebSocket-compatible service, and an external
+`traefik` Docker network:
+
+```sh
+SDRTRUNK_HOST=sdrtrunk.example.com \
+  docker compose -f docker-compose.yml -f examples/docker-compose.traefik.yml up -d
+```
+
+Create the external network first if it does not already exist:
+
+```sh
+docker network create traefik
+```
+
+The public router must provide HTTPS. Do not proxy the container's self-signed
+HTTPS endpoint unless your reverse proxy is configured to trust it.
+
 ### Stopping the Service
 
 To stop the service, run:
