@@ -11,7 +11,7 @@ To get started with running SDRTrunk in Docker, follow these steps:
 1. Ensure you have Docker and Docker Compose installed on your host machine.
 2. Run the following script to set up necessary udev rules:
     ```sh
-    ./install-on-host-machine/install-udev.sh
+    bash ./install-on-host-machine/install-udev.sh
     ```
 
 ### Running the Service
