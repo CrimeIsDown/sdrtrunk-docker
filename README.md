@@ -29,6 +29,21 @@ To get started with running SDRTrunk in Docker, follow these steps:
 
 3. Access SDRTrunk by navigating to `http://localhost:3000` in your web browser.
 
+### Raspberry Pi 5
+
+The image supports 64-bit Raspberry Pi OS. Docker Compose v2 passes the target
+platform to the build automatically. If an older Compose installation cannot
+detect it, build explicitly for arm64:
+
+```sh
+docker compose build --build-arg TARGETPLATFORM=linux/arm64
+docker compose up -d
+```
+
+SDRplay's API requires a 4 KiB-page kernel. Raspberry Pi OS installations using
+the newer 16 KiB-page kernel are not compatible with the vendor API; use the
+standard 4 KiB kernel when an SDRplay device is required.
+
 ### Stopping the Service
 
 To stop the service, run:
